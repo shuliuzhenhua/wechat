@@ -49,10 +49,9 @@ class Client extends BaseClient
      * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function buildConfig(array $jsApiList, bool $debug = false, bool $beta = false, bool $json = true)
+    public function buildConfig(array $jsApiList, bool $debug = false, bool $beta = false, bool $json = true, string $url = null)
     {
-        $config = array_merge(compact('debug', 'beta', 'jsApiList'), $this->configSignature());
-
+        $config = array_merge(compact('debug', 'beta', 'jsApiList'), $this->configSignature($url));
         return $json ? json_encode($config) : $config;
     }
 
